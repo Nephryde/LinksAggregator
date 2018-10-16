@@ -17,7 +17,11 @@ namespace LinksAggregator.Models
         [Required]
         public int Rate { get; set; }
         [Required]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime InsertionDate { get; set; }
+        [Required]
+        [StringLength(100, ErrorMessage = "Opis może składać się maksymalnie ze 100 znaków.")]
+        public string Description { get; set; }
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
     }

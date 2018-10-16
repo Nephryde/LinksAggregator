@@ -37,6 +37,9 @@ namespace LinksAggregator
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+            services.AddSingleton(Configuration);
+            services.AddScoped<ILink, LinkService>();
+            services.AddScoped<IApplicationUser, ApplicationUserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
