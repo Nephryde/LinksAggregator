@@ -17,7 +17,7 @@ namespace LinksAggregator.Views.Manage
 
         public static string ExternalLogins => "ExternalLogins";
 
-        public static string TwoFactorAuthentication => "TwoFactorAuthentication";
+        public static string AddLink => "AddLink";
 
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
 
@@ -25,7 +25,7 @@ namespace LinksAggregator.Views.Manage
 
         public static string ExternalLoginsNavClass(ViewContext viewContext) => PageNavClass(viewContext, ExternalLogins);
 
-        public static string TwoFactorAuthenticationNavClass(ViewContext viewContext) => PageNavClass(viewContext, TwoFactorAuthentication);
+        public static string AddLinkClass(ViewContext viewContext) => PageNavClass(viewContext, AddLink);
     
         public static string PageNavClass(ViewContext viewContext, string page)
         {
