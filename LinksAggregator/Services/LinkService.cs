@@ -41,13 +41,6 @@ namespace LinksAggregator.Services
             }           
         }
 
-        public int GetRate(int id)
-        {
-            return _context.Links
-                .FirstOrDefault(link => link.Id == id)
-                .Rate;
-        }
-
         public async Task AddVote(int id)
         {
             Link link = await GetById(id);
@@ -57,36 +50,12 @@ namespace LinksAggregator.Services
             await _context.SaveChangesAsync();
         }
 
-        public string GetTitle(int id)
-        {
-            return _context.Links
-                .FirstOrDefault(link => link.Id == id)
-                .Title;
-        }
-
-        public string GetUrlAddress(int id)
-        {
-            return _context.Links
-                .FirstOrDefault(link => link.Id == id)
-                .UrlAddress;
-        }
-
         public string GetUserId(int id)
         {
             return _context.Links
                 .FirstOrDefault(link => link.Id == id)
                 .ApplicationUserId;
         }
-
-        public async Task<ApplicationUser> GetUser(int id)
-        {
-            Link link = await GetById(id);
-            return link.ApplicationUser;
-        }
-
-        public async Task SaveChanges()
-        {
-            await _context.SaveChangesAsync();
-        }       
+     
     }
 }

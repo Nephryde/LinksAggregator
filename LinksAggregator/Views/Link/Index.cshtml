@@ -30,8 +30,7 @@
                             if (userId != link.ApplicationUserId)
                             {
                             
-                                @Html.ActionLink("", "AddVote", "Link", new { id = link.Id }, new { @class = "fas fa-plus-circle" })
-                            
+                                @Html.ActionLink("", "AddVote", "Link", new { id = link.Id }, new { @class = "fas fa-plus-circle" })                                                    
                             }
                         }
                             </td>
@@ -41,7 +40,6 @@
                         <td class="">@link.ApplicationUserNickname</td>
                         <td class="">@link.InsertionDate.ToString("dd/MM/yyyy")</td>
                     </tr>
-
                 }
             </tbody>
         </table>

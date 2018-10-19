@@ -560,19 +560,13 @@ namespace LinksAggregator.Controllers
 
         #endregion
 
-        
-        public IActionResult AddLink(AddingNewLinkViewModel model)
+        [HttpGet]
+        public IActionResult AddLink()
         {
-            var link = new Link
-            {
-                Title = model.Title,
-                UrlAddress = model.UrlAddress,
-                Description = model.Description
-            };
-
-            return View(model);
+            return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> Save(Link link)
         {
             var user = await _userManager.GetUserAsync(User);
