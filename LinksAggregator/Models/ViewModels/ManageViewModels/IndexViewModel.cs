@@ -21,5 +21,7 @@ namespace LinksAggregator.Models.ManageViewModels
         public string PhoneNumber { get; set; }
 
         public string StatusMessage { get; set; }
+
+        public string Nickname { get; set; }
     }
 }

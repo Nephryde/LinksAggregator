@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using LinksAggregator.Models;
 using LinksAggregator.Models.ManageViewModels;
 using LinksAggregator.Services;
+using LinksAggregator.Models.ViewModels.ManageViewModels;
 
 namespace LinksAggregator.Controllers
 {
@@ -24,6 +25,8 @@ namespace LinksAggregator.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private IApplicationUser _users;
+        private ILink _links;
         private readonly UrlEncoder _urlEncoder;
 
         private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
@@ -34,13 +37,17 @@ namespace LinksAggregator.Controllers
           SignInManager<ApplicationUser> signInManager,
           IEmailSender emailSender,
           ILogger<ManageController> logger,
-          UrlEncoder urlEncoder)
+          UrlEncoder urlEncoder,
+          IApplicationUser users,
+          ILink links)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
             _urlEncoder = urlEncoder;
+            _users = users;
+            _links = links;
         }
 
         [TempData]
@@ -61,7 +68,8 @@ namespace LinksAggregator.Controllers
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 IsEmailConfirmed = user.EmailConfirmed,
-                StatusMessage = StatusMessage
+                StatusMessage = StatusMessage,
+                Nickname = user.Nickname
             };
 
             return View(model);
@@ -99,6 +107,16 @@ namespace LinksAggregator.Controllers
                 if (!setPhoneResult.Succeeded)
                 {
                     throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
+                }
+            }
+
+            var nickname = user.Nickname;
+            if(model.Nickname != nickname)
+            {
+                var setNicknameResult = await _users.SetUserNickname(user, model.Nickname);
+                if(!setNicknameResult.Succeeded)
+                {
+                    throw new ApplicationException("Error");
                 }
             }
 
@@ -541,5 +559,26 @@ namespace LinksAggregator.Controllers
         }
 
         #endregion
+
+        [HttpGet]
+        public IActionResult AddLink()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Save(Link link)
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            link.ApplicationUserId = user.Id;
+            link.InsertionDate = DateTime.Today;
+
+            await _links.Add(link);
+
+            return RedirectToAction(nameof(AddLink));
+        }
     }
+
+    
 }

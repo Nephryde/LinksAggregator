@@ -1,0 +1,48 @@
+﻿@model LinksAggregator.Models.ViewModels.LinkIndexViewModel
+@inject UserManager<ApplicationUser> Users
+
+
+<div id="links">
+    <h3>Przeglądaj Linki</h3>
+    <div id="linksTable">
+        <table class="table table-condensed" id="linksIndexTable">
+            <thead>
+                <tr style="text-align: center;">
+                    <th>Link</th>
+                    <th>Opis</th>
+                    <th></th>
+                    <th>Ocena</th>
+                    <th>Dodał</th>
+                    <th>Data dodania</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var link in Model.Links)
+                {
+                    <tr class="linksRow">
+                        <td style="max-width: 50px;">
+                            <a href="@link.UrlAddress">@link.Title</a>
+                        </td>
+                        <td style="max-width: 100px;">@link.Description</td>
+                        <td style="max-width: 10px;">
+                        @{ 
+                            var userId = Users.GetUserId(User);
+                            if (userId != link.ApplicationUserId)
+                            {
+                            
+                                @Html.ActionLink("", "AddVote", "Link", new { id = link.Id }, new { @class = "fas fa-plus-circle" })                                                    
+                            }
+                        }
+                            </td>
+                        <td>
+                            @link.Rate
+                        </td>
+                        <td class="">@link.ApplicationUserNickname</td>
+                        <td class="">@link.InsertionDate.ToString("dd/MM/yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
