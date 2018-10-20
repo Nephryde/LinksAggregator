@@ -1,5 +1,6 @@
 ﻿using LinksAggregator.Data;
 using LinksAggregator.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,13 @@ namespace LinksAggregator.Services
             return await _context.Links.ToListAsync();
         }
 
+        public async Task<IEnumerable<Link>> GetUserLinks(string id)
+        {
+            return await _context.Links.AsNoTracking()
+                .Where(link => link.ApplicationUserId == id)
+                .ToListAsync();
+        }
+
         public async Task<Link> GetById(int id)
         {
             return await _context.Links
@@ -47,6 +55,7 @@ namespace LinksAggregator.Services
             int rate = link.Rate;
             rate++;
             link.Rate = rate;
+
             await _context.SaveChangesAsync();
         }
 

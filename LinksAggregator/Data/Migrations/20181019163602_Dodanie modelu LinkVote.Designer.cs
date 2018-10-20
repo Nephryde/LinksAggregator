@@ -4,14 +4,16 @@ using LinksAggregator.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LinksAggregator.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181019163602_Dodanie modelu LinkVote")]
+    partial class DodaniemodeluLinkVote
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,21 +106,6 @@ namespace LinksAggregator.Data.Migrations
                     b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Links");
-                });
-
-            modelBuilder.Entity("LinksAggregator.Models.LinkVote", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<int>("LinkId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LinkVotes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

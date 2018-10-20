@@ -1,6 +1,8 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    background-color: #0b172a;
+    color: white;
+    margin: 0 !important;
+    font-family: 'Raleway', sans-serif;
 }
 
 /* Wrapping element */
@@ -32,4 +34,152 @@
     .carousel-caption {
         display: none;
     }
+}
+
+#header {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    text-align: center;
+}
+
+.content {
+    background-color: #121e31;
+    padding: 15px;
+}
+
+.myNavbar {
+    background-color: #bc4123;
+    text-align: center;
+    height: 60px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#footer {
+    background-color: #051124;
+    padding: 20px;
+    height: 60px;
+    text-align: center;
+}
+
+.linkBox {
+    background-color: #1a2638;
+    margin-bottom: 10px;
+    padding: 5px 10px 2px 10px;
+}
+
+#title {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#link-title {
+    color: #bc4123;
+}
+
+#icon {
+    font-size: 100px;
+}
+
+.myContainer {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px;
+}
+
+.setNavbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: inline-block;
+    height: 60px;
+}
+
+.setNavbar li{
+    float: left;
+    border-right: 1px dotted #fff
+}
+
+    .setNavbar li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 20px 35px 0 35px;
+        text-decoration: none;
+        height: 60px;
+        font-weight: bold;
+    }
+
+.setNavbar li a:hover {
+    background-color: #b33a1d !important;
+}
+
+.setNavbar ul > li:first-child {
+    border-left: 1px dotted #fff;
+}
+
+.leftBox{
+    width: 80%;
+    float:left;
+}
+
+    .leftBox hr {
+        background-color: #162234;
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #051124;
+        margin: 10px 0;
+        padding: 0;
+    }
+
+.urlTitle {
+    font-size: 23px;
+    font-weight: 500;
+    color: #b33a1d;
+}
+
+.rightBox1{
+    width: 20%;
+    float: left;
+    text-align: center;
+    font-size: 40px;
+    padding-top: 15px;
+}
+
+.rightBox2 {
+    width: 20%;
+    float: left;
+    text-align: center;
+    font-size: 40px;
+    padding-top: 50px;
+}
+
+.rate{
+}
+
+.vote{
+}
+
+.clearBoth{
+    clear: both;
+}
+
+.manageMenu{
+    padding: 0;
+    color: white;
+}
+
+.manageNav{
+    color: white;
+    background-color: #263244;
+}
+
+.h3Header{
+    font-weight: bold;
+    color: #c54729;
+    text-align: center;
 }

@@ -14,6 +14,8 @@ using LinksAggregator.Models;
 using LinksAggregator.Models.ManageViewModels;
 using LinksAggregator.Services;
 using LinksAggregator.Models.ViewModels.ManageViewModels;
+using LinksAggregator.Models.ViewModels;
+using System.Web;
 
 namespace LinksAggregator.Controllers
 {
@@ -120,7 +122,7 @@ namespace LinksAggregator.Controllers
                 }
             }
 
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "Twoje dane zostały pomyślnie zaktualizowane.";
             return RedirectToAction(nameof(Index));
         }
 
@@ -567,16 +569,53 @@ namespace LinksAggregator.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Save(Link link)
+        public async Task<IActionResult> AddLink(Link link)
         {
             var user = await _userManager.GetUserAsync(User);
 
             link.ApplicationUserId = user.Id;
             link.InsertionDate = DateTime.Today;
 
-            await _links.Add(link);
+            Uri uriResult;
+            bool result = Uri.TryCreate(link.UrlAddress, UriKind.Absolute, out uriResult)
+                && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);          
 
-            return RedirectToAction(nameof(AddLink));
+            if (!result)
+                ModelState.AddModelError("UrlAddress", "Nieprawidłowy format adresu URL.");
+
+            if(ModelState.IsValid)
+            {
+                await _links.Add(link);
+                TempData["result"] = "Pomyślnie dodano nowy link!";
+
+                return RedirectToAction(nameof(ListUserLinks));
+            }
+
+            return View();
+        }
+
+        public async Task<IActionResult> ListUserLinks()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var linkModels = await _links.GetUserLinks(user.Id);
+
+            var listingResult = linkModels
+                .Select(result => new ListingLinksViewModel
+                {
+                    Id = result.Id,
+                    UrlAddress = result.UrlAddress,
+                    Title = result.Title,
+                    Rate = result.Rate,
+                    InsertionDate = result.InsertionDate,
+                    Description = result.Description
+                });
+
+            var model = new LinkIndexViewModel()
+            {
+                Links = listingResult.OrderByDescending(r => r.Rate)
+            };
+
+            return View(model);
         }
     }
 

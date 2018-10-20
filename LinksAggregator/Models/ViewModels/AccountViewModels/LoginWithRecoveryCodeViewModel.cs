@@ -8,9 +8,9 @@ namespace LinksAggregator.Models.AccountViewModels
 {
     public class LoginWithRecoveryCodeViewModel
     {
-            [Required]
+            [Required(ErrorMessage = "To pole jest wymagane.")]
             [DataType(DataType.Text)]
-            [Display(Name = "Recovery Code")]
+            [Display(Name = "Kod Recovery")]
             public string RecoveryCode { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace LinksAggregator.Data
 
         public DbSet<Link> Links { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<LinkVote> LinkVotes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

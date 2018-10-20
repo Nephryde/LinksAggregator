@@ -32,6 +32,13 @@ namespace LinksAggregator.Services
                 .Nickname;
         }
 
+        public string GetUserEmail(string id)
+        {
+            return _context.ApplicationUsers
+                .FirstOrDefault(user => user.Id == id)
+                .Email;
+        }
+
         public async Task<IdentityResult> SetUserNickname(ApplicationUser user, string newNickname)
         {
             user.Nickname = newNickname;

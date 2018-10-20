@@ -1,0 +1,67 @@
+﻿@model LinksAggregator.Models.ViewModels.LinkIndexViewModel
+
+@{
+    ViewData["Title"] = "Dodaj link";
+    ViewData.AddActivePage(ManageNavPages.ListUserLinks);
+}
+
+<p style="color: #126312; font-weight: bold">@TempData["result"]</p>
+
+@foreach (var link in Model.Links)
+{
+    if (link.SubtractedDates <= 5)
+    {
+        <div class="linkBox" style="background-color: #263244;">
+            <div class="leftBox">
+                <div class="urlTitle">
+                    @link.Title
+                </div>
+                <div class="urlDesc">
+                    @link.Description
+                </div>
+                <div class="url">
+                    <a href="@link.UrlAddress">Click</a>
+                </div>
+                <hr />
+                <div class="insertionDate">
+                    @link.InsertionDate.ToString("dd/MM/yyyy")
+                </div>
+            </div>
+            <div class="rightBox2" style="padding: 23px 5px 5px 20px;">
+                @link.Rate
+            </div>
+            <div class="clearBoth"></div>
+        </div>
+    }
+}
+
+
+
+
+
+
+
+@*<table class="table table-condensed" id="linksIndexTable">
+        <thead>
+            <tr style="text-align: center;">
+                <th>Link</th>
+                <th>Opis</th>
+                <th>Ocena</th>
+                <th>Data dodania</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var link in Model.Links)
+            {
+                <tr class="linksRow">
+                    <td>
+                        <a href="@link.UrlAddress">@link.Title</a>
+                    </td>
+                    <td>@link.Description</td>
+                    <td>@link.Rate</td>
+                    <td>@link.InsertionDate.ToString("dd/MM/yyyy")</td>
+                </tr>
+
+            }
+        </tbody>
+    </table>*@

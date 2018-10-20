@@ -10,11 +10,11 @@ namespace LinksAggregator.Models.ViewModels.ManageViewModels
     {      
         public Link Link { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane.")]
         [Display(Name = "Tytuł")]
         public string Title { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane.")]
         [Display(Name = "Adres URL")]
         public string UrlAddress { get; set; }
         public string Description { get; set; }
