@@ -158,12 +158,6 @@
     padding-top: 50px;
 }
 
-.rate{
-}
-
-.vote{
-}
-
 .clearBoth{
     clear: both;
 }
@@ -183,3 +177,20 @@
     color: #c54729;
     text-align: center;
 }
+
+.imageContainer {
+    position: relative;
+    max-width: 1140px; /* Maximum width */
+    margin: 0 auto; /* Center it */
+}
+
+    .imageContainer .content {
+        position: absolute; /* Position the background text */
+        bottom: 0; /* At the bottom. Use top:0 to append it to the top */
+        background: rgb(0, 0, 0); /* Fallback color */
+        background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+        color: #f1f1f1; /* Grey text */
+        width: 100%; /* Full width */
+        padding: 0px 10px 10px 10px; /* Some padding */
+        margin-top: 60px;
+    }

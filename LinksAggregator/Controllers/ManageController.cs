@@ -576,9 +576,8 @@ namespace LinksAggregator.Controllers
             link.ApplicationUserId = user.Id;
             link.InsertionDate = DateTime.Today;
 
-            Uri uriResult;
-            bool result = Uri.TryCreate(link.UrlAddress, UriKind.Absolute, out uriResult)
-                && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);          
+            bool result = Uri.TryCreate(link.UrlAddress, UriKind.Absolute, out Uri uriResult)
+                && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
 
             if (!result)
                 ModelState.AddModelError("UrlAddress", "Nieprawidłowy format adresu URL.");

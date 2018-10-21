@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using LinksAggregator.Models;
 using LinksAggregator.Models.ViewModels;
 using LinksAggregator.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +29,7 @@ namespace LinksAggregator.Controllers
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             var linkModels = await _links.GetAll();
 
@@ -47,7 +48,6 @@ namespace LinksAggregator.Controllers
                     ApplicationUserEmail = _users.GetUserEmail(_links.GetUserId(result.Id))
                 });
 
-
             var model = new LinkIndexViewModel()
             {
                 Links = listingResult.OrderByDescending(r => r.Rate),
@@ -58,6 +58,8 @@ namespace LinksAggregator.Controllers
             return View(model);
         }
 
+        [Authorize]
+        [HttpGet]
         public async Task<IActionResult> AddVote(int id)
         {
             bool hasVoted = _linkVotes.VoteCheck(id, _userManager.GetUserId(User));

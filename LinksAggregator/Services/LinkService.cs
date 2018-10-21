@@ -22,8 +22,8 @@ namespace LinksAggregator.Services
         }
 
         public async Task<IEnumerable<Link>> GetAll()
-        {
-            return await _context.Links.ToListAsync();
+        {           
+            return await _context.Links.AsNoTracking().ToListAsync();
         }
 
         public async Task<IEnumerable<Link>> GetUserLinks(string id)
@@ -37,16 +37,6 @@ namespace LinksAggregator.Services
         {
             return await _context.Links
                 .FirstOrDefaultAsync(link => link.Id == id);
-        }
-
-        public async Task Delete(int id)
-        {
-            Link link = await GetById(id);
-            if(link != null)
-            {
-                _context.Links.Remove(link);
-                await _context.SaveChangesAsync();
-            }           
         }
 
         public async Task AddVote(int id)

@@ -17,6 +17,9 @@ namespace LinksAggregator.Models.ViewModels.ManageViewModels
         [Required(ErrorMessage = "To pole jest wymagane.")]
         [Display(Name = "Adres URL")]
         public string UrlAddress { get; set; }
+
+        [Required(ErrorMessage = "To pole jest wymagane.")]
+        [Display(Name = "Opis")]
         public string Description { get; set; }
         public string ApplicationUserId { get; set; }
         public DateTime TodayDate { get; set; }

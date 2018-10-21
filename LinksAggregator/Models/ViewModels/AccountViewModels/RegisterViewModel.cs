@@ -14,7 +14,7 @@ namespace LinksAggregator.Models.AccountViewModels
         public string Email { get; set; }
 
         [Required(ErrorMessage = "To pole jest wymagane.")]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} musi mieć przynajmniej {2} znaków i maksymalnie {1}.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Hasło")]
         public string Password { get; set; }

@@ -6,10 +6,11 @@
 <h2>@ViewData["Title"]</h2>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
         <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
             <h4>Stwórz nowe konto</h4>
             <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Email"></label>
                 <input asp-for="Email" class="form-control" />
@@ -19,6 +20,8 @@
                 <label asp-for="Password"></label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
+                <p style="font-size: small;">Hasło musi posiadać przynajmniej jedną dużą literę A-Z.</p>
+                <p style="font-size: small;">Hasło musi posiadać przynajmniej jeden znak niealfabetyczny.</p>
             </div>
             <div class="form-group">
                 <label asp-for="ConfirmPassword">Potwierdź hasło</label>

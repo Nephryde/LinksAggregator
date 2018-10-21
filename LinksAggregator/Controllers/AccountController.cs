@@ -78,7 +78,7 @@ namespace LinksAggregator.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Nie udało się zalogować.");
                     return View(model);
                 }
             }
