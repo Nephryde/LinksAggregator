@@ -19,6 +19,8 @@ namespace LinksAggregator.Views.Manage
 
         public static string AddLink => "AddLink";
 
+        public static string ListUserLinks => "ListUserLinks";
+
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
 
         public static string ChangePasswordNavClass(ViewContext viewContext) => PageNavClass(viewContext, ChangePassword);
@@ -26,6 +28,8 @@ namespace LinksAggregator.Views.Manage
         public static string ExternalLoginsNavClass(ViewContext viewContext) => PageNavClass(viewContext, ExternalLogins);
 
         public static string AddLinkClass(ViewContext viewContext) => PageNavClass(viewContext, AddLink);
+
+        public static string ListUserLinksClass(ViewContext viewContext) => PageNavClass(viewContext, ListUserLinks);
     
         public static string PageNavClass(ViewContext viewContext, string page)
         {

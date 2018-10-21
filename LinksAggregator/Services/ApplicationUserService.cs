@@ -15,21 +15,18 @@ namespace LinksAggregator.Services
 
         public ApplicationUserService(ApplicationDbContext context) => _context = context;
 
-        public async Task<IEnumerable<ApplicationUser>> GetAll()
-        {
-            return await _context.ApplicationUsers.ToListAsync();
-        }
-
-        public async Task<ApplicationUser> GetById(string id)
-        {
-            return await _context.ApplicationUsers
-                .FirstOrDefaultAsync(user => user.Id == id);
-        }
         public string GetUserNickname(string id)
         {
             return _context.ApplicationUsers
                 .FirstOrDefault(user => user.Id == id)
                 .Nickname;
+        }
+
+        public string GetUserEmail(string id)
+        {
+            return _context.ApplicationUsers
+                .FirstOrDefault(user => user.Id == id)
+                .Email;
         }
 
         public async Task<IdentityResult> SetUserNickname(ApplicationUser user, string newNickname)
@@ -38,7 +35,6 @@ namespace LinksAggregator.Services
             await _context.SaveChangesAsync();
 
             return IdentityResult.Success;
-        }
-        
+        }        
     }
 }

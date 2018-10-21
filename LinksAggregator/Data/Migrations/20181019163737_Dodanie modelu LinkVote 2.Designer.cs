@@ -4,14 +4,16 @@ using LinksAggregator.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LinksAggregator.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181019163737_Dodanie modelu LinkVote 2")]
+    partial class DodaniemodeluLinkVote2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,12 +36,15 @@ namespace LinksAggregator.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
-                    b.Property<string>("Nickname")
-                        .HasMaxLength(20);
+                    b.Property<string>("Nickname");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
@@ -83,7 +88,7 @@ namespace LinksAggregator.Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(500);
+                        .HasMaxLength(100);
 
                     b.Property<DateTime>("InsertionDate");
 
@@ -91,11 +96,10 @@ namespace LinksAggregator.Data.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(50);
+                        .HasMaxLength(30);
 
                     b.Property<string>("UrlAddress")
-                        .IsRequired()
-                        .HasMaxLength(200);
+                        .IsRequired();
 
                     b.HasKey("Id");
 

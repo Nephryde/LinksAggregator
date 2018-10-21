@@ -15,6 +15,8 @@ namespace LinksAggregator.Models.ViewModels
         public string Description { get; set; }
         public string ApplicationUserId { get; set; }
         public string ApplicationUserNickname { get; set; }
+        public double SubtractedDates { get; set; }
+        public string ApplicationUserEmail { get; set; }
 
     }
 }

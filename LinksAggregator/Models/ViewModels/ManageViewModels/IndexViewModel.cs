@@ -17,7 +17,7 @@ namespace LinksAggregator.Models.ManageViewModels
         public string Email { get; set; }
 
         [Phone]
-        [Display(Name = "Phone number")]
+        [Display(Name = "Numer telefonu")]
         public string PhoneNumber { get; set; }
 
         public string StatusMessage { get; set; }

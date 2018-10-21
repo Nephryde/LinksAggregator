@@ -2,17 +2,19 @@
     Layout = "/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Ustawienia konta</h2>
+<h2 style="color: #b33a1d; font-weight: bold;">Ustawienia konta</h2>
 
 <div>
     <h4>Zmień ustawienia konta oraz dodawaj nowe linki</h4>
     <hr />
-    <div class="row">
-        <div class="col-md-3">
-            @await Html.PartialAsync("_ManageNav")
-        </div>
-        <div class="col-md-9">
-            @RenderBody()
+    <div class="linkBox" style="padding: 25px;">
+        <div class="row">
+            <div class="col-md-3 manageMenu">
+                @await Html.PartialAsync("_ManageNav")
+            </div>
+            <div class="col-md-9">
+                @RenderBody()
+            </div>
         </div>
     </div>
 </div>

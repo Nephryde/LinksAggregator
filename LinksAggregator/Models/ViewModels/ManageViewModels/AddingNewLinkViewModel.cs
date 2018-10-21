@@ -10,13 +10,16 @@ namespace LinksAggregator.Models.ViewModels.ManageViewModels
     {      
         public Link Link { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane.")]
         [Display(Name = "Tytuł")]
         public string Title { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "To pole jest wymagane.")]
         [Display(Name = "Adres URL")]
         public string UrlAddress { get; set; }
+
+        [Required(ErrorMessage = "To pole jest wymagane.")]
+        [Display(Name = "Opis")]
         public string Description { get; set; }
         public string ApplicationUserId { get; set; }
         public DateTime TodayDate { get; set; }
